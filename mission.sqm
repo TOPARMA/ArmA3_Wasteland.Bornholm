@@ -76,7 +76,9 @@ class Mission
 		"a3_characters_f_gamma",
 		"a3_characters_f",
 		"A3_Data_F",
-		"bornholm"
+		"bornholm",
+		"A3_Structures_F_EPC_Civ_Accessories",
+		"A3_Soft_F_Gamma_HEMTT"
 	};
 	addOnsAuto[]=
 	{
@@ -85,6 +87,8 @@ class Mission
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_OPFOR",
 		"A3_Characters_F_INDEP",
+		"A3_Structures_F_EPC_Civ_Accessories",
+		"A3_Soft_F_Gamma_HEMTT",
 		"bornholm"
 	};
 	randomSeed=14957468;
@@ -1606,7 +1610,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={1681.0452,18.531267,7579.748};
+					position[]={1679.6896,18.493101,7580.5063};
 					azimut=4.8233585;
 					id=145;
 					side="LOGIC";
@@ -1799,9 +1803,149 @@ class Mission
 			};
 		};
 	};
+	class Vehicles
+	{
+		items=11;
+		class Item0
+		{
+			position[]={12463.282,37.933987,2978.2551};
+			azimut=-264.99405;
+			id=155;
+			side="EMPTY";
+			vehicle="Land_Atm_02_F";
+			skill=0.60000002;
+			text="ATM_1";
+			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+		};
+		class Item1
+		{
+			position[]={17492.744,2.2299609,4665.1577};
+			azimut=-586.99756;
+			id=156;
+			side="EMPTY";
+			vehicle="Land_Atm_02_F";
+			skill=0.60000002;
+			text="ATM_2";
+			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+		};
+		class Item2
+		{
+			position[]={4956.7524,34.674732,18878.018};
+			azimut=-90.17749;
+			id=157;
+			side="EMPTY";
+			vehicle="Land_Atm_02_F";
+			skill=0.60000002;
+			text="ATM_3";
+			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+		};
+		class Item3
+		{
+			position[]={1558.3831,18.42728,6990.6646};
+			azimut=67.778297;
+			offsetY=0.5;
+			id=158;
+			side="EMPTY";
+			vehicle="Land_Atm_02_F";
+			skill=0.60000002;
+			text="ATM_4";
+			init="this addAction [""Use ATM"", ""addons\atm\ATM.sqf""];";
+		};
+		class Item4
+		{
+			position[]={783.5816,2.1702678,7618.4297};
+			azimut=147.44901;
+			offsetY=0.5;
+			id=159;
+			side="EMPTY";
+			vehicle="B_Truck_01_box_F";
+			skill=0.60000002;
+			text="Sell_Truck_1";
+			init="this call A3W_fnc_setupSellTruck";
+			description="Sell Vehicle";
+		};
+		class Item5
+		{
+			position[]={3324.2947,2.8339696,19412.816};
+			azimut=176.173;
+			offsetY=0.5;
+			id=160;
+			side="EMPTY";
+			vehicle="B_Truck_01_box_F";
+			skill=0.60000002;
+			text="Sell_Truck_2";
+			init="this call A3W_fnc_setupSellTruck";
+			description="Sell Vehicle";
+		};
+		class Item6
+		{
+			position[]={17724.373,2.3312922,5298.5225};
+			azimut=-1.6905937;
+			offsetY=0.5;
+			id=161;
+			side="EMPTY";
+			vehicle="B_Truck_01_box_F";
+			skill=0.60000002;
+			text="Sell_Truck_3";
+			init="this call A3W_fnc_setupSellTruck";
+			description="Sell Vehicle";
+		};
+		class Item7
+		{
+			position[]={9706.54,80.118423,5288.7334};
+			azimut=283.21283;
+			offsetY=0.5;
+			id=162;
+			side="EMPTY";
+			vehicle="B_Truck_01_box_F";
+			skill=0.60000002;
+			text="Sell_Truck_4";
+			init="this call A3W_fnc_setupSellTruck";
+			description="Sell Vehicle";
+		};
+		class Item8
+		{
+			position[]={3889.9792,15.222089,5012.1162};
+			azimut=70.531197;
+			offsetY=0.5;
+			id=163;
+			side="EMPTY";
+			vehicle="B_Truck_01_ammo_F";
+			skill=0.60000002;
+			text="Service_Truck_1";
+			init="this call A3W_fnc_setupResupplyTruck";
+			description="Service";
+		};
+		class Item9
+		{
+			position[]={14551.356,45.892998,5202.3789};
+			azimut=-8.2706757;
+			offsetY=0.5;
+			id=164;
+			side="EMPTY";
+			vehicle="B_Truck_01_ammo_F";
+			skill=0.60000002;
+			text="Service_Truck_2";
+			init="this call A3W_fnc_setupResupplyTruck";
+			description="Service";
+		};
+		class Item10
+		{
+			position[]={13839.823,85.81707,10769.613};
+			azimut=-78.484703;
+			offsetY=0.5;
+			id=165;
+			side="EMPTY";
+			vehicle="B_Truck_01_ammo_F";
+			skill=0.60000002;
+			text="Service_Truck_3";
+			init="this call A3W_fnc_setupResupplyTruck";
+			description="Service";
+		};
+	};
 	class Markers
 	{
-		items=190;
+		items=194;
 		class Item0
 		{
 			position[]={10946.272,37.61874,3883.4485};
@@ -3309,6 +3453,49 @@ class Mission
 			text="D";
 			type="mil_flag";
 			colorName="ColorYellow";
+		};
+		class Item190
+		{
+			position[]={12463.285,37.941685,2978.4153};
+			name="ATM_1";
+			text="ATM";
+			type="mil_dot";
+			colorName="ColorUNKNOWN";
+			a=0.75;
+			b=0.75;
+		};
+		class Item191
+		{
+			position[]={17492.842,2.2306738,4665.2876};
+			name="ATM_2";
+			text="ATM";
+			type="mil_dot";
+			colorName="ColorUNKNOWN";
+			a=0.75;
+			b=0.75;
+			angle=-322.00305;
+		};
+		class Item192
+		{
+			position[]={4956.7905,34.672977,18877.873};
+			name="ATM_3";
+			text="ATM";
+			type="mil_dot";
+			colorName="ColorUNKNOWN";
+			a=0.75;
+			b=0.75;
+			angle=174.81651;
+		};
+		class Item193
+		{
+			position[]={1559.2004,18.428461,6990.9321};
+			name="ATM_4";
+			text="ATM";
+			type="mil_dot";
+			colorName="ColorUNKNOWN";
+			a=0.75;
+			b=0.75;
+			angle=332.77246;
 		};
 	};
 };
