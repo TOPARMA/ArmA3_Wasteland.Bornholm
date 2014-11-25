@@ -90,8 +90,8 @@ class Mission
 	randomSeed=14957468;
 	class Intel
 	{
-		briefingName="GoT A3Wasteland Bornholm v1.0b by JoSchaap";
-		overviewText="GoT edition of the Wasteland survival sandbox by Team Wasteland - visit A3Wasteland.com for more details";
+		briefingName="TOP A3Wasteland Bornholm v1.0b extDB";
+		overviewText="TOP Wasteland Conquest Bornholm by TOPARMA.com. Core developed by A3Wasteland.com";
 		resistanceWest=0;
 		startWeather=0.10000001;
 		startWind=0.30000001;
@@ -1801,7 +1801,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=152;
+		items=190;
 		class Item0
 		{
 			position[]={10946.272,37.61874,3883.4485};
@@ -2940,6 +2940,375 @@ class Mission
 			name="Town_30";
 			type="Empty";
 			colorName="ColorRed";
+		};
+		class Item152
+		{
+			position[]={16449.84,39.789055,9478.2637};
+			name="TERRITORY_1_SVANEKE_A";
+			markerType="ELLIPSE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=50;
+			b=50;
+		};
+		class Item153
+		{
+			position[]={16453.352,38.657288,9481.0742};
+			name="FLAG_1_SVANEKE_A";
+			text="A";
+			type="mil_flag";
+			colorName="ColorYellow";
+		};
+		class Item154
+		{
+			position[]={17400.51,24.622984,10161.568};
+			name="TERRITORY_1_SVANEKE_B";
+			markerType="ELLIPSE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=50;
+			b=50;
+		};
+		class Item155
+		{
+			position[]={17404.021,24.703066,10164.379};
+			name="FLAG_1_SVANEKE_B";
+			text="B";
+			type="mil_flag";
+			colorName="ColorYellow";
+		};
+		class Item156
+		{
+			position[]={17952.633,6.9876733,9877.4668};
+			name="TERRITORY_1_SVANEKE_C";
+			markerType="ELLIPSE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=50;
+			b=50;
+		};
+		class Item157
+		{
+			position[]={17956.145,6.7329001,9880.2773};
+			name="FLAG_1_SVANEKE_C";
+			text="C";
+			type="mil_flag";
+			colorName="ColorYellow";
+		};
+		class Item158
+		{
+			position[]={9538.6533,106.9568,9250.3965};
+			name="TERRITORY_2_EKKODELAN_B";
+			markerType="ELLIPSE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=50;
+			b=50;
+		};
+		class Item159
+		{
+			position[]={9542.165,108.69461,9253.207};
+			name="FLAG_2_EKKODELAN_B";
+			text="B";
+			type="mil_flag";
+			colorName="ColorYellow";
+		};
+		class Item160
+		{
+			position[]={8305.668,169.70631,8365.5889};
+			name="TERRITORY_2_EKKODELAN_A";
+			markerType="ELLIPSE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=50;
+			b=50;
+		};
+		class Item161
+		{
+			position[]={8309.1797,168.79366,8368.3994};
+			name="FLAG_2_EKKODELAN_A";
+			text="A";
+			type="mil_flag";
+			colorName="ColorYellow";
+		};
+		class Item162
+		{
+			position[]={10326.926,129.6362,7937.3311};
+			name="TERRITORY_2_EKKODELAN_C";
+			markerType="ELLIPSE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=50;
+			b=50;
+		};
+		class Item163
+		{
+			position[]={10330.438,129.65875,7940.1416};
+			name="FLAG_2_EKKODELAN_C";
+			text="C";
+			type="mil_flag";
+			colorName="ColorYellow";
+		};
+		class Item164
+		{
+			position[]={1502.8085,11.733747,7853.3042};
+			name="TERRITORY_3_ROENNE_A";
+			markerType="ELLIPSE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=50;
+			b=50;
+		};
+		class Item165
+		{
+			position[]={1506.3202,11.478186,7856.1147};
+			name="FLAG_3_ROENNE_A";
+			text="A";
+			type="mil_flag";
+			colorName="ColorYellow";
+		};
+		class Item166
+		{
+			position[]={1922.3551,17.39414,7786.3516};
+			name="TERRITORY_3_ROENNE_B";
+			markerType="RECTANGLE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=45;
+			b=70;
+			angle=-128.9845;
+		};
+		class Item167
+		{
+			position[]={1925.8668,17.385607,7792.9302};
+			name="FLAG_3_ROENNE_B";
+			text="B";
+			type="mil_flag";
+			colorName="ColorYellow";
+		};
+		class Item168
+		{
+			position[]={2103.9373,21.842304,8095.5752};
+			name="TERRITORY_3_ROENNE_C";
+			markerType="ELLIPSE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=50;
+			b=50;
+		};
+		class Item169
+		{
+			position[]={2107.449,21.447802,8098.3857};
+			name="FLAG_3_ROENNE_C";
+			text="C";
+			type="mil_flag";
+			colorName="ColorYellow";
+		};
+		class Item170
+		{
+			position[]={10415.848,63.849907,2348.9939};
+			name="TERRITORY_0_SOEMARKEN_B";
+			markerType="ELLIPSE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=50;
+			b=50;
+		};
+		class Item171
+		{
+			position[]={10419.359,64.731621,2351.8044};
+			name="FLAG_0_SOEMARKEN_B";
+			text="B";
+			type="mil_flag";
+			colorName="ColorYellow";
+		};
+		class Item172
+		{
+			position[]={9846.3086,11.943888,1970.288};
+			name="TERRITORY_0_SOEMARKEN_A";
+			markerType="ELLIPSE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=50;
+			b=50;
+		};
+		class Item173
+		{
+			position[]={9849.8203,11.811039,1973.0985};
+			name="FLAG_0_SOEMARKEN_A";
+			text="A";
+			type="mil_flag";
+			colorName="ColorYellow";
+		};
+		class Item174
+		{
+			position[]={10565.538,12.799851,1881.0818};
+			name="TERRITORY_0_SOEMARKEN_C";
+			markerType="ELLIPSE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=50;
+			b=50;
+		};
+		class Item175
+		{
+			position[]={10569.05,12.793027,1883.8923};
+			name="FLAG_0_SOEMARKEN_C";
+			text="C";
+			type="mil_flag";
+			colorName="ColorYellow";
+		};
+		class Item176
+		{
+			position[]={17761.365,1.9024621,5017.1401};
+			name="TERRITORY_5_NEXOE_A";
+			markerType="RECTANGLE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=15;
+			b=15;
+		};
+		class Item177
+		{
+			position[]={17764.613,1.8949744,5017.5752};
+			name="FLAG_5_NEXOE_A";
+			text="A";
+			type="mil_flag";
+			colorName="ColorYellow";
+			a=0.5;
+			b=0.5;
+		};
+		class Item178
+		{
+			position[]={17785.537,1.740329,4936.9678};
+			name="TERRITORY_5_NEXOE_B";
+			markerType="RECTANGLE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=15;
+			b=15;
+		};
+		class Item179
+		{
+			position[]={17788.785,1.5129944,4937.4028};
+			name="FLAG_5_NEXOE_B";
+			text="B";
+			type="mil_flag";
+			colorName="ColorYellow";
+			a=0.5;
+			b=0.5;
+		};
+		class Item180
+		{
+			position[]={17785.691,3.0078442,4863.0566};
+			name="TERRITORY_5_NEXOE_C";
+			markerType="RECTANGLE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=15;
+			b=25;
+		};
+		class Item181
+		{
+			position[]={17786.072,3.0180061,4863.3115};
+			name="FLAG_5_NEXOE_C";
+			text="C";
+			type="mil_flag";
+			colorName="ColorYellow";
+			a=0.5;
+			b=0.5;
+		};
+		class Item182
+		{
+			position[]={3321.2178,74.800087,18819.939};
+			name="TERRITORY_4_SANDVIG_A";
+			markerType="ELLIPSE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=50;
+			b=50;
+		};
+		class Item183
+		{
+			position[]={3324.7295,73.865273,18822.75};
+			name="FLAG_4_SANDVIG_A";
+			text="A";
+			type="mil_flag";
+			colorName="ColorYellow";
+		};
+		class Item184
+		{
+			position[]={3495.8806,77.502388,19885.859};
+			name="TERRITORY_4_SANDVIG_B";
+			markerType="RECTANGLE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=45;
+			b=70;
+			angle=-128.98399;
+		};
+		class Item185
+		{
+			position[]={3492.5269,77.685219,19883.283};
+			name="FLAG_4_SANDVIG_B";
+			text="B";
+			type="mil_flag";
+			colorName="ColorYellow";
+		};
+		class Item186
+		{
+			position[]={4171.8076,73.420731,18918.025};
+			name="TERRITORY_4_SANDVIG_C";
+			markerType="ELLIPSE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=50;
+			b=50;
+		};
+		class Item187
+		{
+			position[]={4175.3193,73.640823,18920.836};
+			name="FLAG_4_SANDVIG_C";
+			text="C";
+			type="mil_flag";
+			colorName="ColorYellow";
+		};
+		class Item188
+		{
+			position[]={2382.6492,118.92777,8240.8965};
+			name="TERRITORY_3_ROENNE_D";
+			markerType="ELLIPSE";
+			type="Empty";
+			colorName="ColorYellow";
+			fillName="DiagGrid";
+			a=15;
+			b=15;
+		};
+		class Item189
+		{
+			position[]={2386.1609,118.92768,8243.707};
+			name="FLAG_3_ROENNE_D";
+			text="D";
+			type="mil_flag";
+			colorName="ColorYellow";
 		};
 	};
 };

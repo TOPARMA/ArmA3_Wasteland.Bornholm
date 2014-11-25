@@ -101,33 +101,33 @@ allGunStoreFirearms = compileFinal str (call pistolArray + call smgArray + call 
 staticGunsArray = compileFinal str
 [
 	// ["Vehicle Ammo Crate", "Box_NATO_AmmoVeh_F", 2500],
-	// ["Static Titan AT 4Rnd (NATO)", "B_static_AT_F", 2500], // Static launchers only have 4 ammo, hence the low price
-	// ["Static Titan AT 4Rnd (CSAT)", "O_static_AT_F", 2500],
-	// ["Static Titan AT 4Rnd (AAF)", "I_static_AT_F", 2500],
-	// ["Static Titan AA 4Rnd (NATO)", "B_static_AA_F", 3000],
-	// ["Static Titan AA 4Rnd (CSAT)", "O_static_AA_F", 3000],
-	// ["Static Titan AA 4Rnd (AAF)", "I_static_AA_F", 3000],
-	// ["Mk30 HMG .50 Low tripod (NATO)", "B_HMG_01_F", 2500],
-	// ["Mk30 HMG .50 Low tripod (CSAT)", "O_HMG_01_F", 2500],
-	// ["Mk30 HMG .50 Low tripod (AAF)", "I_HMG_01_F", 2500],
+	["Static Titan AT 4Rnd (NATO)", "B_static_AT_F", 2500], // Static launchers only have 4 ammo, hence the low price
+	["Static Titan AT 4Rnd (CSAT)", "O_static_AT_F", 2500],
+	["Static Titan AT 4Rnd (AAF)", "I_static_AT_F", 2500],
+	["Static Titan AA 4Rnd (NATO)", "B_static_AA_F", 3000],
+	["Static Titan AA 4Rnd (CSAT)", "O_static_AA_F", 3000],
+	["Static Titan AA 4Rnd (AAF)", "I_static_AA_F", 3000],
+	["Mk30 HMG .50 Low tripod (NATO)", "B_HMG_01_F", 2500],
+	["Mk30 HMG .50 Low tripod (CSAT)", "O_HMG_01_F", 2500],
+	["Mk30 HMG .50 Low tripod (AAF)", "I_HMG_01_F", 2500],
 	// ["Mk30A HMG .50 Sentry (NATO)", "B_HMG_01_A_F", 5000], // "A" = Autonomous = Overpowered
 	// ["Mk30A HMG .50 Sentry (CSAT)", "O_HMG_01_A_F", 5000],
 	// ["Mk30A HMG .50 Sentry (AAF)", "I_HMG_01_A_F", 5000],
-	// ["Mk30 HMG .50 High tripod (NATO)", "B_HMG_01_high_F", 3000],
-	// ["Mk30 HMG .50 High tripod (CSAT)", "O_HMG_01_high_F", 3000],
-	// ["Mk30 HMG .50 High tripod (AAF)", "I_HMG_01_high_F", 3000],
-	// ["Mk32 GMG 20mm Low tripod (NATO)", "B_GMG_01_F", 5500],
-	// ["Mk32 GMG 20mm Low tripod (CSAT)", "O_GMG_01_F", 5500],
-	// ["Mk32 GMG 20mm Low tripod (AAF)", "I_GMG_01_F", 5500],
+	["Mk30 HMG .50 High tripod (NATO)", "B_HMG_01_high_F", 3000],
+	["Mk30 HMG .50 High tripod (CSAT)", "O_HMG_01_high_F", 3000],
+	["Mk30 HMG .50 High tripod (AAF)", "I_HMG_01_high_F", 3000],
+	["Mk32 GMG 20mm Low tripod (NATO)", "B_GMG_01_F", 5500],
+	["Mk32 GMG 20mm Low tripod (CSAT)", "O_GMG_01_F", 5500],
+	["Mk32 GMG 20mm Low tripod (AAF)", "I_GMG_01_F", 5500],
 	// ["Mk32A GMG 20mm Sentry (NATO)", "B_GMG_01_A_F", 10000],
 	// ["Mk32A GMG 20mm Sentry (CSAT)", "O_GMG_01_A_F", 10000],
 	// ["Mk32A GMG 20mm Sentry (AAF)", "I_GMG_01_A_F", 10000],
-	// ["Mk32 GMG 20mm High tripod (NATO)", "B_GMG_01_high_F", 6000],
-	// ["Mk32 GMG 20mm High tripod (CSAT)", "O_GMG_01_high_F", 6000],
-	// ["Mk32 GMG 20mm High tripod (AAF)", "I_GMG_01_high_F", 6000],
-	// ["Mk6 Mortar (NATO)", "B_Mortar_01_F", 12500],
-	// ["Mk6 Mortar (CSAT)", "O_Mortar_01_F", 12500],
-	// ["Mk6 Mortar (AAF)", "I_Mortar_01_F", 12500]
+	["Mk32 GMG 20mm High tripod (NATO)", "B_GMG_01_high_F", 6000],
+	["Mk32 GMG 20mm High tripod (CSAT)", "O_GMG_01_high_F", 6000],
+	["Mk32 GMG 20mm High tripod (AAF)", "I_GMG_01_high_F", 6000],
+	["Mk6 Mortar (NATO)", "B_Mortar_01_F", 12500],
+	["Mk6 Mortar (CSAT)", "O_Mortar_01_F", 12500],
+	["Mk6 Mortar (AAF)", "I_Mortar_01_F", 12500]
 ];
 
 throwputArray = compileFinal str
@@ -563,7 +563,9 @@ genObjectsArray = compileFinal str
 	["Military Cargo Tower", "Land_Cargo_Tower_V1_F", 10000, "object"],
 	["Concrete Ramp", "Land_RampConcrete_F", 350, "object"],
 	["Concrete Ramp (High)", "Land_RampConcreteHigh_F", 500, "object"],
-	["Scaffolding", "Land_Scaffolding_F", 250, "object"]
+	//["Scaffolding", "Land_Scaffolding_F", 250, "object"]
+	["Land Pier (TOParma.com)", "Land_Pier_F", 250000, "object"],
+	["Fuel Station (TOParma.com)", "Land_FuelStation_Feed_F", 10000, "object"]
 ];
 
 allGenStoreVanillaItems = compileFinal str (call genItemArray + call genObjectsArray + call allStoreGear);
@@ -571,7 +573,7 @@ allGenStoreVanillaItems = compileFinal str (call genItemArray + call genObjectsA
 //Text name, classname, buy cost, spawn type, sell price (selling not implemented) or spawning color
 landArray = compileFinal str
 [
-	["[DLC] Kart", "C_Kart_01_F", 500, "vehicle"],
+	["Kart", "C_Kart_01_F", 500, "vehicle"],
 
 	["Quadbike (Civilian)", "C_Quadbike_01_F", 600, "vehicle"],
 	["Quadbike (NATO)", "B_Quadbike_01_F", 650, "vehicle"],
@@ -600,22 +602,22 @@ landArray = compileFinal str
 	["HEMTT Fuel", "B_Truck_01_fuel_F", 9000, "vehicle"],
 	["HEMTT Medical", "B_Truck_01_medical_F", 10000, "vehicle"],
 	["HEMTT Repair", "B_Truck_01_Repair_F", 12500, "vehicle"],
-	["HEMTT Ammo", "B_Truck_01_ammo_F", 27500, "vehicle"],
+	// ["HEMTT Ammo", "B_Truck_01_ammo_F", 27500, "vehicle"],
 
-	["Tempest Device", "O_Truck_03_device_F", 4000, "vehicle"],
+	// ["Service Truck", "O_Truck_03_device_F", 5000, "vehicle"],
 	["Tempest Transport", "O_Truck_03_transport_F", 6000, "vehicle"],
 	["Tempest Covered", "O_Truck_03_covered_F", 7500, "vehicle"],
 	["Tempest Fuel", "O_Truck_03_fuel_F", 9000, "vehicle"],
 	["Tempest Medical", "O_Truck_03_medical_F", 10000, "vehicle"],
 	["Tempest Repair", "O_Truck_03_repair_F", 12500, "vehicle"],
-	["Tempest Ammo", "O_Truck_03_ammo_F", 27500, "vehicle"],
+	// ["Tempest Ammo", "O_Truck_03_ammo_F", 27500, "vehicle"],
 
 	["Zamak Transport", "I_Truck_02_transport_F", 4000, "vehicle"],
 	["Zamak Covered", "I_Truck_02_covered_F", 5000, "vehicle"],
 	["Zamak Fuel", "I_Truck_02_fuel_F", 7500, "vehicle"],
 	["Zamak Medical", "I_Truck_02_medical_F", 9000, "vehicle"],
 	["Zamak Repair", "I_Truck_02_box_F", 10000, "vehicle"],
-	["Zamak Ammo", "I_Truck_02_ammo_F", 25000, "vehicle"],
+	// ["Zamak Ammo", "I_Truck_02_ammo_F", 25000, "vehicle"],
 
 	["UGV Stomper (NATO)", "B_UGV_01_F", 2500, "vehicle"],
 	["UGV Stomper RCWS (NATO)", "B_UGV_01_rcws_F", 15000, "vehicle"],
@@ -682,17 +684,17 @@ helicoptersArray = compileFinal str
 	["PO-30 Orca (Armed, Black)", "O_Heli_Light_02_v2_F", 30000, "vehicle"], // Armed Ka-60 with orca paintjob
 	["PO-30 Orca (Armed, Hex)", "O_Heli_Light_02_F", 35000, "vehicle"], // Armed Ka-60
 	["WY-55 Hellcat (Armed)", "I_Heli_light_03_F", 40000, "vehicle"], // Armed AW159
-	["AH-99 Blackfoot", "B_Heli_Attack_01_F", 50000, "vehicle"], // RAH-66 with gunner
-	["Mi-48 Kajman (Hex)", "O_Heli_Attack_02_F", 60000, "vehicle"], // Mi-28 with gunner
-	["Mi-48 Kajman (Black)", "O_Heli_Attack_02_black_F", 60000, "vehicle"] // Mi-28 with gunner (black camo)
+	["AH-99 Blackfoot", "B_Heli_Attack_01_F", 75000, "vehicle"], // RAH-66 with gunner
+	["Mi-48 Kajman (Hex)", "O_Heli_Attack_02_F", 85000, "vehicle"], // Mi-28 with gunner
+	["Mi-48 Kajman (Black)", "O_Heli_Attack_02_black_F", 85000, "vehicle"] // Mi-28 with gunner (black camo)
 ];
 
 planesArray = compileFinal str
 [
-	["A-143 Buzzard AA", "I_Plane_Fighter_03_AA_F", 40000, "vehicle"],
-	["A-143 Buzzard CAS", "I_Plane_Fighter_03_CAS_F", 45000, "vehicle"],
-	["A-164 Wipeout CAS", "B_Plane_CAS_01_F", 60000, "vehicle"],
-	["To-199 Neophron CAS", "O_Plane_CAS_02_F", 60000, "vehicle"],
+	["A-143 Buzzard AA", "I_Plane_Fighter_03_AA_F", 120000, "vehicle"],
+	["A-143 Buzzard CAS", "I_Plane_Fighter_03_CAS_F", 120000, "vehicle"],
+	// ["A-164 Wipeout CAS", "B_Plane_CAS_01_F", 60000, "vehicle"],
+	// ["To-199 Neophron CAS", "O_Plane_CAS_02_F", 60000, "vehicle"],
 	["MQ4A Greyhawk ATGM UAV", "B_UAV_02_F", 20000, "vehicle"],
 	["MQ4A Greyhawk Bomber UAV", "B_UAV_02_CAS_F", 10000, "vehicle"], // Bomber UAVs are a lot harder to use, hence why they are cheaper than ATGMs
 	["K40 Ababil-3 ATGM UAV (CSAT)", "O_UAV_02_F", 20000, "vehicle"],
@@ -759,15 +761,14 @@ colorsArray = compileFinal str
 			["NATO Tan", "client\images\vehicleTextures\nato.jpg"], // #(argb,8,8,3)color(0.584,0.565,0.515,0.3)
 			["CSAT Brown", "client\images\vehicleTextures\csat.jpg"], // #(argb,8,8,3)color(0.624,0.512,0.368,0.3)
 			["AAF Green", "client\images\vehicleTextures\aaf.jpg"], // #(argb,8,8,3)color(0.546,0.59,0.363,0.2)
-			["All colors!", "client\images\vehicleTextures\rainbow.jpg"],
-			["Carbon Fibre", "client\images\vehicleTextures\carbon.jpg"],
-			["RatLook (rusty)", "client\images\vehicleTextures\rusty.jpg"],
-			["Denim (hipster)", "client\images\vehicleTextures\denim.jpg"],
-			["Psychadelic", "client\images\vehicleTextures\psych.jpg"],
-			["Holland!", "client\images\vehicleTextures\holland.jpg"],
+			["Trippy", "client\images\vehicleTextures\rainbow.jpg"],
+			["Carbon", "client\images\vehicleTextures\carbon.jpg"],
+			["Rusty", "client\images\vehicleTextures\rusty.jpg"],
+			["Denim", "client\images\vehicleTextures\denim.jpg"],
+			["Psych", "client\images\vehicleTextures\psych.jpg"],
+			["Leopard", "client\images\vehicleTextures\leopard.jpg"],
 			["'Murica", "client\images\vehicleTextures\murica.jpg"],
 			["Confederate", "client\images\vehicleTextures\confederate.jpg"],
-			["Leopard", "client\images\vehicleTextures\leopard.jpg"],
 			["Yellow Camo", "client\images\vehicleTextures\camo_fuel.jpg"],
 			["Orange Camo", "client\images\vehicleTextures\camo_fack.jpg"],
 			["Red Camo", "client\images\vehicleTextures\camo_deser.jpg"],
@@ -800,9 +801,9 @@ customPlayerItems = compileFinal str
 	["Jerry Can (Empty)", "jerrycanempty", localize "STR_WL_ShopDescriptions_fuelEmpty", "client\icons\jerrycan.paa", 50, 25],
 	["Spawn Beacon", "spawnbeacon", localize "STR_WL_ShopDescriptions_spawnBeacon", "client\icons\briefcase.paa", 1500, 750],
 	["Camo Net", "camonet", localize "STR_WL_ShopDescriptions_Camo", "client\icons\briefcase.paa", 200, 100],
-	["Syphon Hose", "syphonhose", localize "STR_WL_ShopDescriptions_SyphonHose", "client\icons\jerrycan.paa", 200, 100],
-	["Energy Drink", "energydrink", localize "STR_WL_ShopDescriptions_Energy_Drink", "client\icons\water.paa", 100, 50],
-	["Warchest", "warchest", localize "STR_WL_ShopDescriptions_Warchest", "client\icons\briefcase.paa", 1000, 500]
+	["Syphon Hose", "syphonhose", localize "STR_WL_ShopDescriptions_SyphonHose", "client\icons\jerrycan.paa", 200, 100]
+	// ["Energy Drink", "energydrink", localize "STR_WL_ShopDescriptions_Energy_Drink", "client\icons\water.paa", 100, 50],
+	// ["Warchest", "warchest", localize "STR_WL_ShopDescriptions_Warchest", "client\icons\briefcase.paa", 1000, 500]
 ];
 
 call compile preprocessFileLineNumbers "mapConfig\storeOwners.sqf";

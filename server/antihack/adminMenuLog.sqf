@@ -17,8 +17,14 @@ if (_sentChecksum == _flagChecksum) then
 	_action = [_this, 2, "", [""]] call BIS_fnc_param;
 	_value = [_this, 3, "", [0,"",[]]] call BIS_fnc_param;
 
-	if (["A3W_savingMethod", 1] call getPublicVar == 2) then
+	_A3W_savingMethod = ["A3W_savingMethod", 1] call getPublicVar;
+	switch (_A3W_savingMethod) do
 	{
-		["AdminLog" call PDB_objectFileName, "AdminLog", _uid, [_name, _action, _value]] call iniDB_write;
+		case 2: {
+					["AdminLog" call PDB_objectFileName, "AdminLog", _uid, [_name, _action, _value]] call iniDB_write;
+				};
+		case 3: {
+					[format["addAdminLog:%1:%2:%3:%4", call(A3W_extDB_ServerID), _uid, str(_action), str(_value)],2] call extDB_Database_async;
+				};
 	};
 };

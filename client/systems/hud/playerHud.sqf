@@ -11,6 +11,7 @@
 #define hud_vehicle_idc 3601
 #define hud_activity_icon_idc 3602
 #define hud_activity_textbox_idc 3603
+#define hud_server_idc 3604
 
 scriptName "playerHud";
 
@@ -94,8 +95,7 @@ _globalVoiceWarnTimer = ["A3W_globalVoiceWarnTimer", 5] call getPublicVar;
 _globalVoiceWarning = 0;
 _globalVoiceMaxWarns = ceil (["A3W_globalVoiceMaxWarns", 5] call getPublicVar);
 
-private "_uavMapCtrl";
-_uavMapCtrl = controlNull;
+private ["_mapCtrls", "_mapCtrl"];
 
 while {true} do
 {
@@ -107,6 +107,12 @@ while {true} do
 	_hudVehicle = _ui displayCtrl hud_vehicle_idc;
 	_hudActivityIcon = _ui displayCtrl hud_activity_icon_idc;
 	_hudActivityTextbox = _ui displayCtrl hud_activity_textbox_idc;
+	_hudServerTextbox = _ui displayCtrl hud_server_idc;
+	
+	_serverString = format ["<t color='#A0FFFFFF'>Server: TOP #%1 Wasteland Bornholm</t>", call A3W_extDB_ServerID];
+	_serverString = format ["%1<br/><t color='#A0FFFFFF'>Teamspeak: ts.toparma.com<br/>Website: TOPARMA.COM</t>",_serverString];
+	_hudServerTextbox ctrlSetStructuredText parseText _serverString;
+	_hudServerTextbox ctrlCommit 0;
 
 	//Calculate Health 0 - 100
 	_health = ((1 - damage player) * 100) max 0;
@@ -139,11 +145,11 @@ while {true} do
 	} else {
 		format ["%1 <img size='0.7' image='client\icons\running_man.paa'/>", 100 - ceil((getFatigue player) * 100)];
 	};
-	_str = _str + format ["<br/>%1 <img size='0.7' image='client\icons\bounty.paa'/>", [player getVariable ["cbounty", 0]] call fn_numbersText];
-	_str = _str + format ["<br/>%1 <img size='0.7' image='client\icons\money.paa'/>", [player getVariable ["cmoney", 0]] call fn_numbersText];
-	_str = _str + format ["<br/>%1 <img size='0.7' image='client\icons\water.paa'/>", ceil (thirstLevel max 0)];
-	_str = _str + format ["<br/>%1 <img size='0.7' image='client\icons\food.paa'/>", ceil (hungerLevel max 0)];
-	_str = _str + format ["<br/><t color='%1'>%2</t> <img size='0.7' image='client\icons\health.paa'/>", _healthTextColor, _health];
+	_str = format["%1<br/>%2 <img size='0.7' image='client\icons\bank.paa'/>", _str, [player getVariable ["bmoney", 0]] call fn_numbersText];
+	_str = format["%1<br/>%2 <img size='0.7' image='client\icons\money.paa'/>", _str, [player getVariable ["cmoney", 0]] call fn_numbersText];
+	_str = format["%1<br/>%2 <img size='0.7' image='client\icons\water.paa'/>", _str, ceil (thirstLevel max 0)];
+	_str = format["%1<br/>%2 <img size='0.7' image='client\icons\food.paa'/>", _str, ceil (hungerLevel max 0)];
+	_str = format["%1<br/><t color='%2'>%3</t> <img size='0.7' image='client\icons\health.paa'/>", _str, _healthTextColor, _health];
 
 	_vitals ctrlShow alive player;
 	_vitals ctrlSetStructuredText parseText _str;
@@ -154,7 +160,7 @@ while {true} do
 
 	if (isStreamFriendlyUIEnabled) then
 	{
-		_tempString = format ["<t color='#A0FFFFFF'>GoT A3Wasteland %1<br/>www.a3wasteland.com</t>", getText (configFile >> "CfgWorlds" >> worldName >> "description")];
+		_tempString = format ["<t color='#A0FFFFFF'>TOP A3Wasteland %1<br/>www.toparma.com</t>", getText (configFile >> "CfgWorlds" >> worldName >> "description")];
 		_yOffset = 0.28;
 
 		_hudVehicle ctrlSetStructuredText parseText _tempString;
@@ -317,20 +323,28 @@ while {true} do
 		};
 	};
 
-	// Add player markers to UAV Terminal
-	if (isNull _uavMapCtrl) then
+	if (isNil "_mapCtrls") then
 	{
-		_uavTerminal = findDisplay 160;
-
-		if (!isNull _uavTerminal) then
-		{
-			_uavMapCtrl = _uavTerminal displayCtrl 51;
-			_uavMapCtrl ctrlAddEventHandler ["Draw",
-			{
-				{ (_this select 0) drawIcon _x } forEach drawPlayerMarkers_array;
-			}];
-		};
+		_mapCtrls =
+		[
+			[{(uiNamespace getVariable ["RscDisplayAVTerminal", displayNull]) displayCtrl 51}, controlNull]/*, // UAV Terminal
+			[{artilleryComputerDisplayGoesHere displayCtrl 500}, controlNull]*/  // Artillery computer - cannot be enabled until this issue is resolved: http://feedback.arma3.com/view.php?id=21546
+		];
 	};
+
+	// Add player markers to misc map controls
+	{
+		if (isNull (_x select 1)) then
+		{
+			_mapCtrl = call (_x select 0);
+
+			if (!isNull _mapCtrl) then
+			{
+				_mapCtrl ctrlAddEventHandler ["Draw", { _ctrl = _this select 0; { _ctrl drawIcon _x } forEach drawPlayerMarkers_array }];
+				_x set [1, _mapCtrl];
+			};
+		};
+	} forEach _mapCtrls;
 
 	uiSleep 1;
 };

@@ -31,8 +31,8 @@ else
 
 	switch (true) do
 	{
-		case (_num < 10): { _vehicleType = mediumMilitaryVehicles call BIS_fnc_selectRandom; _type = 2 };
-		case (_num < 40): { _vehicleType = lightMilitaryVehicles call BIS_fnc_selectRandom; _type = 1 };
+		case (_num < 15): { _vehicleType = mediumMilitaryVehicles call BIS_fnc_selectRandom; _type = 2 };
+		case (_num < 50): { _vehicleType = lightMilitaryVehicles call BIS_fnc_selectRandom; _type = 1 };
 		default           { _vehicleType = civilianVehicles call BIS_fnc_selectRandom; _type = 0 };
 	};
 };
@@ -69,6 +69,13 @@ if (_vehicleType isKindOf "Offroad_01_armed_base_F") then
 {
 	_vehicle removeMagazinesTurret ["100Rnd_127x99_mag_Tracer_Yellow", [0]];
 	_vehicle addMagazineTurret ["100Rnd_127x99_mag_Tracer_Yellow", [0]];
+	reload _vehicle;
+};
+
+if (_vehicleType isKindOf "Helicopter_Base_F") then
+{
+	_vehicle addweapon "CMFlareLauncher";
+	_vehicle addmagazine "168Rnd_CMFlare_Chaff_Magazine";
 	reload _vehicle;
 };
 

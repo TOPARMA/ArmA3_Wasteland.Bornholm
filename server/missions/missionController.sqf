@@ -34,7 +34,7 @@ while {true} do
 		// _availableMissions = MISSION_CTRL_PVAR_LIST; // If you want to allow multiple missions of the same type running along, uncomment this line and comment the one above
 
 		if (count _availableMissions > 0) then
-		{		
+		{
 			_missionsList = _availableMissions call generateMissionWeights;
 			_nextMission = _missionsList call fn_selectRandomWeighted;
 		}
@@ -64,7 +64,8 @@ while {true} do
 
 	uiSleep _missionDelay;
 
-	private ["_setupVars", "_setupObjects", "_waitUntilMarkerPos", "_waitUntilExec", "_waitUntilCondition", "_failedExec", "_successExec"]; // these should be defined in the mission script
+	// these should be defined in the mission script
+	private ["_setupVars", "_setupObjects", "_waitUntilMarkerPos", "_waitUntilExec", "_waitUntilCondition", "_waitUntilSuccessCondition", "_ignoreAiDeaths", "_failedExec", "_successExec"];
 
 	[_controllerSuffix] call compile preprocessFileLineNumbers format ["server\missions\%1\%2.sqf", MISSION_CTRL_FOLDER, _nextMission];
 

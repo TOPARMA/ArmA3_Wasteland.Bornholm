@@ -149,7 +149,7 @@ storePurchaseHandle = _this spawn
 							{
 								[player, "Laserbatteries"] call fn_forceAddItem;
 							};
-							
+
 							player addWeapon _class;
 						}
 						else

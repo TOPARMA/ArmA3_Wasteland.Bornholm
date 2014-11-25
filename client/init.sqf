@@ -27,6 +27,8 @@ pvar_PlayerTeamKilled = objNull;
 pvar_PlayerTKPrevBounty = 0;
 doCancelAction = false;
 firstspawn = 1;
+//AJ Beacondetector
+BeaconScanInProgress = false;
 
 //Initialization Variables
 playerCompiledScripts = false;
@@ -73,8 +75,11 @@ player setVariable ["cbounty", _baseBounty, true];
 // Player saving - Load from iniDB
 if (["A3W_playerSaving"] call isConfigOn) then
 {
-	call compile preprocessFileLineNumbers "persistence\players\c_setupPlayerDB.sqf";
+	call compile preprocessFileLineNumbers "persistence\client\players\setupPlayerDB.sqf";
+
+	9999 cutText ["Requesting Player Info", "BLACK", 0.01];
 	call fn_requestPlayerData;
+	9999 cutText ["Received Player Info", "BLACK", 0.01];
 
 	waitUntil {!isNil "playerData_loaded"};
 

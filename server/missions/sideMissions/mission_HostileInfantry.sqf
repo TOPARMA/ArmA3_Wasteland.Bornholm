@@ -11,7 +11,7 @@ if (!isServer) exitwith {};
 
 #include "sideMissionDefines.sqf"
 
-private ["_nbUnits", "_box1", "_box2", "_townName", "_missionPos", "_buildingRadius", "_putOnRoof", "_fillEvenly", "_tent1", "_chair1", "_chair2", "_cFire1"];
+private ["_nbUnits", "_box1", "_box2", "_box3", "_townName", "_missionPos", "_buildingRadius", "_putOnRoof", "_fillEvenly", "_tent1", "_chair1", "_chair2", "_cFire1"];
 
 _setupVars =
 {
@@ -45,6 +45,10 @@ _setupObjects =
 	_box2 setDir random 360;
 	[_box2, "mission_USLaunchers"] call fn_refillbox;
 	
+	_box3 = createVehicle ["Box_East_Wps_F", _missionPos, [], 5, "None"];
+	_box3 setDir random 360;
+	[_box3, "mission_TOP_Gear1"] call fn_refillbox;
+	
 	// create some atmosphere around the crates 8)
 	_tent1 = createVehicle ["Land_cargo_addon02_V2_F", _missionPos, [], 3, "None"];
 	_tent1 setDir random 360;
@@ -53,7 +57,6 @@ _setupObjects =
 	_chair2 = createVehicle ["Land_CampingChair_V2_F", _missionPos, [], 2, "None"];
 	_chair2 setDir random 180;
 	_cFire1	= createVehicle ["Campfire_burning_F", _missionPos, [], 2, "None"];
-	
 	
 	{ _x setVariable ["R3F_LOG_disabled", true, true] } forEach [_box1, _box2];
 	
@@ -74,13 +77,13 @@ _waitUntilCondition = nil;
 _failedExec =
 {
 	// Mission failed
-	{ deleteVehicle _x } forEach [_box1, _box2, _tent1, _chair1, _chair2, _cFire1];
+	{ deleteVehicle _x } forEach [_box1, _box2, _box3, _tent1, _chair1, _chair2, _cFire1];
 };
 
 _successExec =
 {
 	// Mission completed
-	{ _x setVariable ["R3F_LOG_disabled", false, true] } forEach [_box1, _box2];
+	{ _x setVariable ["R3F_LOG_disabled", false, true] } forEach [_box1, _box2, _box3];
 
 	_successHintMessage = format ["Nice work!<br/><br/><t color='%1'>%2</t><br/>is a safe place again!<br/>Their belongings are now yours to take!", sideMissionColor, _townName];
 	{ deleteVehicle _x } forEach [_tent1, _chair1, _chair2, _cFire1];

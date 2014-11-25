@@ -78,8 +78,17 @@ forEach
 	"A3W_globalVoiceMaxWarns",
 	"A3W_antiHackMinRecoil",
 	"A3W_spawnBeaconCooldown",
-	"A3W_spawnBeaconSpawnHeight"
+	"A3W_spawnBeaconSpawnHeight",
+	"A3W_extDB_ServerID",
+	"A3W_extDB_PlayerSave_ServerID",
+	"A3W_extension",
+	"A3W_vehicleThermals",
+	"A3W_firstPersonCamOnFoot",
+	"A3W_firstPersonCamNotDriver",
+	"A3W_resupplyCostPR",
+	"A3W_serverNumber"
 ];
+
 
 _playerSavingOn = ["A3W_playerSaving"] call isConfigOn;
 _baseSavingOn = ["A3W_baseSaving"] call isConfigOn;
@@ -88,6 +97,7 @@ _staticWeaponSavingOn = ["A3W_staticWeaponSaving"] call isConfigOn;
 _warchestSavingOn = ["A3W_warchestSaving"] call isConfigOn;
 _warchestMoneySavingOn = ["A3W_warchestMoneySaving"] call isConfigOn;
 _beaconSavingOn = ["A3W_spawnBeaconSaving"] call isConfigOn;
+vehicleThermalsOn = ["A3W_vehicleThermals"] call isConfigOn;
 
 _purchasedVehicleSavingOn = ["A3W_purchasedVehicleSaving"] call isConfigOn;
 _missionVehicleSavingOn = ["A3W_missionVehicleSaving"] call isConfigOn;
@@ -98,64 +108,110 @@ _vehicleSavingOn = (_purchasedVehicleSavingOn || _purchasedVehicleSavingOn);
 _setupPlayerDB = scriptNull;
 
 // Do we need any persistence?
+
 if (_playerSavingOn || _serverSavingOn) then
 {
-	_verIniDB = "iniDB" callExtension "version";
+	_persistence = "default";
 
-	if (_verIniDB == "") then
-	{
-		A3W_savingMethod = compileFinal "1";
-		A3W_savingMethodName = compileFinal "'profileNamespace'";
+	switch (call A3W_extension) do {
+		case "iniDB": {  // iniDB
+					_result = "iniDB" callExtension "version";
+					if (_result == "") exitWith
+					{
+					// Fall Back to ProfileNameSpace
+						A3W_savingMethod = compileFinal "1";
+						A3W_savingMethodName = compileFinal "'profileNamespace'";
+						diag_log "[INFO] ### A3W NOT running with iniDB!";
+						diag_log format ["[INFO] ### Saving method = %1", call A3W_savingMethodName];
+						call compile preProcessFileLineNumbers format["persistence\server\%1\init.sqf", _persistence];
+					};
 
-		diag_log "[INFO] ### A3W NOT running with iniDB!";
-		diag_log format ["[INFO] ### Saving method = %1", call A3W_savingMethodName];
-	}
-	else
-	{
-		A3W_savingMethod = compileFinal "2";
+					A3W_savingMethod = compileFinal "2";
+					if (parseNumber _verIniDB > 1) then
+					{
+						A3W_savingMethodName = compileFinal "'iniDBI'";
+					}
+					else
+					{
+						A3W_savingMethodName = compileFinal "'iniDB'";
+					};
+					diag_log format ["[INFO] ### A3W running with %1 v%2", call A3W_savingMethodName, _verIniDB];
+					call compile preProcessFileLineNumbers format["persistence\server\%1\init.sqf", _persistence];
+				};
+		case "extDB": {  // extDB
+					_result = "extDB" callExtension "9:VERSION";
+					if (parseNumber _result < 19) exitWith
+					{
+						// Fall Back to ProfileNameSpace
+						A3W_savingMethod = compileFinal "1";
+						diag_log "[INFO] ### A3W NOT running with extDB!";
+						if (_result != "") then {diag_log format["[INFO] ### A3W Requires extDB v19 or later: extDB v%1 Detected", _result];};
 
-		if (parseNumber _verIniDB > 1) then
-		{
-			A3W_savingMethodName = compileFinal "'iniDBI'";
-		}
-		else
-		{
-			A3W_savingMethodName = compileFinal "'iniDB'";
-		};
+						A3W_savingMethodName = compileFinal "'profileNamespace'";
+						diag_log format ["[INFO] ### Saving method = %1", call A3W_savingMethodName];
+					};
 
-		diag_log format ["[INFO] ### A3W running with %1 v%2", call A3W_savingMethodName, _verIniDB];
+					_persistence = "extDB";
+					_result = [] call compile preProcessFileLineNumbers format["persistence\server\%1\init.sqf", _persistence];
+
+					if (_result) then {
+						A3W_savingMethod = compileFinal "3";
+						A3W_savingMethodName = compileFinal "'extDB'";
+					}
+					else
+					{
+						_persistence = "default";
+						diag_log "[INFO] ### A3W extDB failed to start!";
+						A3W_savingMethod = compileFinal "1";
+						A3W_savingMethodName = compileFinal "'profileNamespace'";
+						diag_log format ["[INFO] ### Saving method = %1", call A3W_savingMethodName];
+						call compile preProcessFileLineNumbers format["persistence\server\%1\init.sqf", _persistence];
+					};
+				};
+		default {  // Profile Space
+					A3W_savingMethod = compileFinal "1";
+					A3W_savingMethodName = compileFinal "'profileNamespace'";
+					diag_log format ["[INFO] ### Saving method = %1", call A3W_savingMethodName];
+					call compile preProcessFileLineNumbers format["persistence\server\%1\init.sqf", _persistence];
+				};
 	};
 
-	call compile preProcessFileLineNumbers "persistence\fn_inidb_custom.sqf";
-
-	diag_log format ["[INFO] ### Saving method = %1", call A3W_savingMethodName];
 
 	// Have we got player persistence enabled?
 	if (_playerSavingOn) then
 	{
-		_setupPlayerDB = [] spawn compile preprocessFileLineNumbers "persistence\players\s_setupPlayerDB.sqf"; // For some reason, scriptDone stays stuck on false on Linux servers when using execVM for this line...
+		_setupPlayerDB = [_persistence] spawn compile preprocessFileLineNumbers format["persistence\server\%1\players\setupPlayerDB.sqf", _persistence]; // For some reason, scriptDone stays stuck on false on Linux servers when using execVM for this line...
 	};
 
-	[_playerSavingOn, _serverSavingOn, _vehicleSavingOn] spawn
+	[_serverSavingOn, _playerSavingOn, _vehicleSavingOn, _purchasedVehicleSavingOn, _missionVehicleSavingOn, _persistence] spawn
 	{
-		_playerSavingOn = _this select 0;
-		_serverSavingOn = _this select 1;
+		_serverSavingOn = _this select 0;
+		_playerSavingOn = _this select 1;
 		_vehicleSavingOn = _this select 2;
+		_purchasedVehicleSavingOn = _this select 3;
+		_missionVehicleSavingOn = _this select 4;
+		_persistence = _this select 5;
+		_serverObjectsIDs = [];
+		_serverVehiclesIDs = [];
 
 		if (_serverSavingOn) then
 		{
-			call compile preprocessFileLineNumbers "persistence\world\oLoad.sqf";
+			_serverObjectsIDs = [] call compile preprocessFileLineNumbers format["persistence\server\%1\world\oLoad.sqf", _persistence];
 		};
-
 		if (_vehicleSavingOn) then
 		{
-			call compile preprocessFileLineNumbers "persistence\world\vLoad.sqf";
+			_serverVehiclesIDs = [] call compile preprocessFileLineNumbers format["persistence\server\%1\world\vLoad.sqf", _persistence];
 		};
-
-		if (_serverSavingOn || (_playerSavingOn && ["A3W_savingMethod", 1] call getPublicVar == 1)) then
+		
+		if ((_serverSavingOn && _vehicleSavingOn) || (_playerSavingOn && _vehicleSavingOn && ["A3W_savingMethod", 1] call getPublicVar == 1)) then
 		{
-			execVM "persistence\world\oSave.sqf";
+			[_serverObjectsIDs, _serverVehiclesIDs, _purchasedVehicleSavingOn, _missionVehicleSavingOn] execVM format["persistence\server\%1\world\oSave.sqf", _persistence];
 		};
+		
+		/*if (_serverSavingOn || (_playerSavingOn && ["A3W_savingMethod", 1] call getPublicVar == 1)) then
+		{
+			[_serverObjectsIDs] execVM format["persistence\server\%1\world\oSave.sqf", _persistence];
+		}; */
 	};
 
 	{
@@ -225,7 +281,7 @@ if (["A3W_serverSpawning"] call isConfigOn) then
 		call compile preprocessFileLineNumbers "server\functions\boatSpawning.sqf";
 	};
 
-	if (["A3W_baseBuilding"] call isConfigOn) then
+	if (["A3W_baseBuilding"] call isConfigOn || ["A3W_essentialsSpawning"] call isConfigOn) then
 	{
 		call compile preprocessFileLineNumbers "server\functions\objectsSpawning.sqf";
 	};
